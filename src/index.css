@@ -1,4 +1,45 @@
+:root {
+  --font-heading: 'Inter', sans-serif;
+  --font-body: 'Poppins', sans-serif;
+}
+
+.header-title {
+  font-family: var(--font-heading);
+  text-align: center;
+  color: white;
+}
+
+.container-main {
+  background-color: white;
+  border-radius: 10px;
+  width: 80%;
+  padding: 10px 20px;
+  margin: auto;
+  box-shadow: 4px 4px 10px rgba(0,0,0, 0.25);
+}
+
+.file-title {
+  font-family: var(--font-body);
+  font-size: 1.5rem;
+  font-weight: 700;
+  line-height: 1.5rem;
+}
+
+.file-name {
+  font-family: var(--font-body);
+  font-size: 1.5rem;
+  font-weight: 400;
+  border-bottom: 1px solid #25a4bb;
+}
+
+.table-box {
+  width: 100%;
+  margin: auto;
+  border: 1px solid rgba(0,0,0, 0.2);
+}
+
 body {
+  background-color: #25a4bb;
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
     'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
