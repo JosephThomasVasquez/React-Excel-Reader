@@ -38,6 +38,25 @@
   border: 1px solid rgba(0,0,0, 0.2);
 }
 
+
+.file-area {
+  width: 50%;
+  padding: 2%;
+  margin: auto;
+}
+
+#drop-file {
+  background-color: rgb(255,255,255, 0.5);
+  border: 1px dashed black;
+  font-family: var(--font-body);
+  font-size: 1rem;
+  display: block;
+  width: 50%;
+  padding: 10% 25%;
+  margin: auto;
+  text-align: center;
+}
+
 body {
   background-color: #25a4bb;
   margin: 0;
