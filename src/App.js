@@ -61,17 +61,14 @@ function App() {
 
   return <div>
     <h1 className="header-title">Excel Reader</h1>
-    <View title={fileTitle}/>
-    {/* <div className="file-area">
-      <div id="drop-file" onChange={handleDrop} multiple accept="image/">[Drop file here]</div>
-    </div> */}
     <form className="file-area" onSubmit={handleDrop}>
       <input type="file" name="file" id="drop-file" onChange={(e) => {
         console.log(e.target.files);
         setTitle(e);
         handleDrop(e);
       }}/>
-    </form>
+      </form>
+    <View title={fileTitle}/>
     </div>
 
 }
