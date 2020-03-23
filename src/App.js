@@ -7,6 +7,8 @@ function App() {
 
   const [fileTitle, setFileTitle] = useState('No File');
 
+  const [headerData, setHeaderData] = useState([]);
+
   function setTitle(getName) {
     const fileName = getName.target.files[0].name;
     setFileTitle(fileName);
@@ -16,7 +18,7 @@ function App() {
 
     // File Reader
     function handleDrop(e) {
-      console.log("File Reeceived");
+      console.log("File Received");
         //e.stopPropogation();
         e.preventDefault();
 
@@ -31,25 +33,48 @@ function App() {
 
             // Workbook setup
             const firstSheet = workbook.SheetNames[0];
-            const cellAddress = 'A1';
 
-            console.log("This is the first sheet: ", firstSheet);
-            console.log("This is the cell: ", cellAddress);
+            //console.log(workbook);
+            const headerCells = ['A1', 'B1', 'C1', 'D1', 'E1'];
+
+            headerCells.forEach(function (headerCell) {
+              const tableHeader = `<th>${headerCell.v}</th>`;
+              //console.log(tableHeader);
+            });
 
             // Get sheet
             const worksheet = workbook.Sheets[firstSheet];
 
-            console.log("This is the sheet from firstSheet: ", worksheet);
-
             // Get Cell
-            const getCell = worksheet[cellAddress];
-
-            console.log("This is the cell chosent: ", getCell);
+            const getCells = worksheet[headerCells[0,1,2,3,4]];
 
             //Get Value ion Cell
-            const cellValue = (getCell ? getCell.v : undefined);
+            const cellValue = (getCells ? getCells.v : undefined);
 
-            console.log("This is the value in the cell: ", cellValue);
+            function get_header_row(sheet) {
+              var headers = [];
+              var range = XLSX.utils.decode_range(sheet['!ref']);
+              var C, R = range.s.r; /* start in the first row */
+              /* walk every column in the range */
+              console.log(R);
+              var aoa = XLSX.utils.sheet_to_json(workbook.Sheets.RkNumber, {header:1});
+              console.log(aoa);
+
+              for(C = range.s.c; C <= range.e.c; ++C) {
+                  var cell = sheet[XLSX.utils.encode_cell({c:C, r:R})] /* find the cell in the first row */
+
+                  var hdr = "UNKNOWN " + C; // <-- replace with your desired default 
+                  if(cell && cell.t) hdr = XLSX.utils.format_cell(cell);
+          
+                  headers.push(hdr);
+              }
+              console.log(headers);
+              return headers;
+          }
+
+          //get_header_row(worksheet);
+
+            setHeaderData(get_header_row(worksheet));
         };
 
         reader.readAsArrayBuffer(f);
@@ -69,6 +94,14 @@ function App() {
       }}/>
       </form>
     <View title={fileTitle}/>
+      <table className="table-box">
+        <tbody>
+          <tr>
+            <th>{headerData}</th>
+              <th>Lastname</th>
+          </tr>
+        </tbody>
+      </table>
     </div>
 
 }

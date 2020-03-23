@@ -1,6 +1,6 @@
 import React from 'react';
 
-function Table() {
+function Table(props) {
 
     return <div className="container">
         <table className="table-box">
